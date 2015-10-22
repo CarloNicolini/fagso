@@ -26,8 +26,6 @@ option(OCTAVE_SUPPORT "Oct with Octave mkoctfile" OFF)
 # PYTHON_SUPPORT needs Cython (install it via "pip install cython")
 option(PYTHON_SUPPORT "Python support through Cython extensions" OFF)
 
-option(IGRAPH_SUPPORT "Support for IGraph" OFF)
-
 if(MATLAB_SUPPORT)
     find_package(MyMatlab)
     include_directories(${MATLAB_INCLUDE_DIRS})
