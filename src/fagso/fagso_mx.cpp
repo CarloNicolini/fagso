@@ -25,11 +25,7 @@
 #include <iostream>
 #include "Fagso.h"
 
-#ifdef MATLAB_SUPPORT
-#include "/usr/local/MATLAB/R2015a/extern/include/mex.h"
-#elif OCTAVE_SUPPORT
-#include "/usr/include/octave-4.0.0/octave/mex.h"
-#endif
+#include <mex.h>
 
 #define IS_ADJACENCY_MATRIX(P) (!mxIsComplex(P) && mxGetNumberOfDimensions(P) == 2 && !mxIsSparse(P) && (mxIsDouble(P) || mxIsUint8(P) || mxIsUint8(P) || mxIsLogical(P)))
 
