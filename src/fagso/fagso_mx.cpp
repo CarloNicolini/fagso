@@ -33,21 +33,52 @@
 
 #define IS_ADJACENCY_MATRIX(P) (!mxIsComplex(P) && mxGetNumberOfDimensions(P) == 2 && !mxIsSparse(P) && (mxIsDouble(P) || mxIsUint8(P) || mxIsUint8(P) || mxIsLogical(P)))
 
+void printUsage()
+{
+    mexPrintf("FAGSO Fast AGglomerative Surprise Optimization\n");
+    mexPrintf("[membership, qual] =fagso_mx(A);\n");
+    mexPrintf("Input:\n");
+    mexPrintf("	A: an undirected binary network. Remember to use real matrices, logical matrices throw error.\n");
+    mexPrintf("Output:\n");
+    mexPrintf("	membership: the membership vector that represents the community which every vertex belongs to after quality optimization.\n");
+    mexPrintf("	qual: the current quality of the partition.\n");
+    mexPrintf("\n");
+    mexPrintf("Example:\n");
+    mexPrintf(">> A=rand(100,100); A=(A+A')/2; A=A.*(A>0.5);\n");
+    mexPrintf(">> [memb, qual] = fagso_mx(A);\n");
+}
+
 void mexFunction(int nOutputArgs, mxArray *outputArgs[], int nInputArgs, const mxArray * inputArgs[])
 {
+    if (nInputArgs<1)
+    {
+        printUsage();
+        return;
+    }
+
     if( nInputArgs > 5 ) // Check the number of arguments
+    {
         mexErrMsgTxt("Too many input arguments.");
+        return;
+    }
     if (nOutputArgs > 2)
+    {
         mexErrMsgTxt("Too many output arguments.");
+        return;
+    }
 
     if(!IS_ADJACENCY_MATRIX(inputArgs[0])) // Check A
+    {
         mexErrMsgTxt("Input matrix must be a real 2D square adjacency matrix .");
+        return;
+    }
 
     int M = mxGetM(inputArgs[0]);
     int N = mxGetN(inputArgs[0]);
     if (M!=N)
     {
         mexErrMsgTxt("Input matrix must be a real 2D square adjacency matrix.");
+        return;
     }
 
     // Detect the sorting method

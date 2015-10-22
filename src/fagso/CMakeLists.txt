@@ -36,12 +36,12 @@ set(FAGSO_HDRS
 add_library(FAGSO SHARED ${FAGSO_SRCS} ${FAGSO_HDRS})
 
 if(MATLAB_SUPPORT)
-        add_mex(fagso_mx fagso_mx.cpp)
-        target_link_libraries(fagso_mx FAGSO ${MATLAB_LIBRARIES})
+        add_mex(fagso_mx fagso_mx.cpp ${FAGSO_SRCS})
+        #target_link_libraries(fagso_mx FAGSO ${MATLAB_LIBRARIES})
 endif(MATLAB_SUPPORT)
 
 if(OCTAVE_SUPPORT)
-    octave_add_oct(fagso_oct SOURCES fagso_mx.cpp LINK_LIBRARIES FAGSO EXTENSION "mex")
+    #octave_add_oct(fagso_oct SOURCES fagso_mx.cpp LINK_LIBRARIES FAGSO EXTENSION "mex")
 endif(OCTAVE_SUPPORT)
 
 if(PYTHON_SUPPORT)

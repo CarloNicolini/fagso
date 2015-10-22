@@ -55,11 +55,5 @@ if(PYTHON_SUPPORT)
     add_definitions("-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION")
 endif(PYTHON_SUPPORT)
 
-if(IGRAPH_SUPPORT)
-    find_package(IGraph)
-    include_directories(${IGRAPH_INCLUDES})
-    add_definitions("-DIGRAPH_SUPPORT")
-endif()
-
 # Add the subdirectory with the source code
 add_subdirectory(src)
