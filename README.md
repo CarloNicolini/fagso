@@ -13,10 +13,10 @@ On Debian-based systems this should suffice:
 On OSX you'd need of a working installation of XCode and clang compiler, you can then downloade and install CMake directly from their website.
 
 ### Supported compilers
-FAGSO is tested on Ubuntu >= 14.04 with gcc/clang compiler. To install the compiler and libraries needed to compile FAGSO this command should be enough:
+FAGSO is tested on Ubuntu >= 14.04 with **gcc/clang** compiler and OSX Yosemite with **clang** compiler.
 
 ## Compilation
-To compile FAGSO open a Terminal window, then issue this commands:
+To compile FAGSO open a terminal window, then issue this commands:
 
     $> git clone https:/github.com/CarloNicolini/fagso.git
     $> cd fagso
@@ -53,7 +53,10 @@ and then enable the python support of FAGSO:
     $> cmake -DPYTHON_SUPPORT=True ..
     $> make all
 
-CMake will show specific errors if some missing package is requested for the compilation.
+CMake will show specific errors if some missing package is requested for the compilation. Just be sure always to be up-to-date with **numpy** and **cython** packages:
+
+    $> sudo pip install -U numpy cython
+
 
 Once `pyfagso` is compiled start a python console and import pyfagso as a normal Python module
 
@@ -61,8 +64,6 @@ Once `pyfagso` is compiled start a python console and import pyfagso as a normal
     >>> import pyfagso
 
 On OSX I strongly suggest to obtain cython through `pip` by first installing `pip` using `homebrew`. 
-
-    $> sudo pip install cython numpy
 
 # Windows support:
 Despite everything should be ready to be ported happily in Windows, I don't have time to let the code compile smoothly on Windows. If you want to join me in porting FAGSO for Windows let me know.

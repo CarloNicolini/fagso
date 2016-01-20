@@ -46,6 +46,7 @@ endif(OCTAVE_SUPPORT)
 
 if(PYTHON_SUPPORT)
     set_source_files_properties(pyfagso.pyx PROPERTIES CYTHON_IS_CXX 1 )
+    message(STATUS ${PYTHON_INCLUDE_DIR})
     # put cython wrapper and the implementation of the classes used (NOT THE CXX!)
     cython_add_module(pyfagso pyfagso.pyx)
     target_link_libraries(pyfagso FAGSO)
