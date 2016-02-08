@@ -41,7 +41,7 @@ if(MATLAB_SUPPORT)
 endif(MATLAB_SUPPORT)
 
 if(OCTAVE_SUPPORT)
-    #octave_add_oct(fagso_oct SOURCES fagso_mx.cpp LINK_LIBRARIES FAGSO EXTENSION "mex")
+    octave_add_oct(fagso_oct SOURCES fagso_mx.cpp LINK_LIBRARIES FAGSO EXTENSION "mex")
 endif(OCTAVE_SUPPORT)
 
 if(PYTHON_SUPPORT)

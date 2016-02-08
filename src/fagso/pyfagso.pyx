@@ -25,7 +25,6 @@ This file is part of FAGSO, a program to find network partitions
 
 
 # Cython imports
-import numpy
 from libcpp.string cimport string
 from libcpp.map cimport map
 from libcpp.vector cimport vector
@@ -55,8 +54,9 @@ def fagso(np.ndarray[double, ndim=2, mode="c"] input not None, **kwargs):
     
     Example:
       import networkx as nx
+      from fagso import *
       G = nx.karate_club_graph()
-      A  = nx.to_numpy(G)
+      A  = nx.to_numpy_matrix(G)
       m,surp,sign = fagso(A, sort_method=8, repetitions=10)
 
     
