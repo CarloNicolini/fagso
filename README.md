@@ -112,15 +112,15 @@ This will generate the `fagso_main` executable. Run it to see a short guide:
        -P [shuffle percentage] shuffle percentage, in [0,1] interval, to make search more exhaustive
 
 
-FAGSO accepts as input networks in binary adjacency matrix format.
+FAGSO accepts as input, networks in binary adjacency matrix format.
 You can try to run FAGSO on an example graph with verbosity level set to 7 (maximum level)
 
-    $> ./fagso_main -V 5 -p 1 ../data/karate.adj
+    $> ./fagso_main -V 7 -p 1 ../data/karate.adj
 
-This will print out community membership of every vertex (`=== Memberships ===`) and vertices (`=== Groups ====`) of every community.
+This will print out (`-p 1` command) community membership of every vertex (`=== Memberships ===`) and vertices (`=== Groups ====`) of every community.
 
 
-## Using fagso as Matlab/Octave mex file
+## Using FAGSO as Matlab/Octave mex file
 
 If you prefer to use FAGSO as a Matlab mex file, follow the instructions on how to compile it for Matlab (already described). Then start a Matlab/Octave session: 
 
@@ -130,15 +130,15 @@ If you prefer to use FAGSO as a Matlab mex file, follow the instructions on how 
 
 At this point try to load a network as a binary symmetric adjacency matrix. We load the same `karate.adj` matrix:
 
-    >> K=load('../data/karate.adj')
-    >> [memb, surp] = fagso_mx(K)
+    >> K=load('../data/karate.adj');
+    >> [memb, surp] = fagso_mx(K);
 
 The array `memb` contains the integer indices of community membership of vertices. The `surp` is the value of Surprise.
 
 For **Octave** the syntax is similar:
 
-    >> K=load('../data/karate.adj')
-    >> [memb, surp] = fagso_oct(K)
+    >> K=load('../data/karate.adj');
+    >> [memb, surp] = fagso_oct(K);
 
 
 # FAQ AND TROUBLESHOOTING
