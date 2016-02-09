@@ -23,16 +23,15 @@ This file is part of FAGSO, a program to find network partitions
   FAGSO. If not, see <http://www.gnu.org/licenses/>.
 """
 
+from __future__ import division
+import numpy as np
+cimport numpy as np
 
 # Cython imports
 from libcpp.string cimport string
 from libcpp.map cimport map
 from libcpp.vector cimport vector
-
 import cython
-# import both numpy and the Cython declarations for numpy
-import numpy as np
-cimport numpy as np
 
 ctypedef map[string, string] params_map
 
@@ -123,6 +122,6 @@ def fagso(np.ndarray[double, ndim=2, mode="c"] input not None, **kwargs):
     finalSignificance = fagso.getFinalSignificance()
     finalAsymptoticSurprise = fagso.getFinalAsymptoticSurprise()
 
-    del fagso
+    #del fagso
     return membership, finalSurprise, finalSignificance, finalAsymptoticSurprise
 
