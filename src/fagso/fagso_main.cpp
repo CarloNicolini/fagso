@@ -118,6 +118,12 @@ Parameters parse_command_line(int argc, char **argv)
             FILE_LOG(logDEBUG) << "Setting specific random seed " << params.seed;
             break;
         }
+        case 'w':
+        {
+            params.saveSolution = (bool)atoi(argv[i]);
+            FILE_LOG(logDEBUG) << "Setting save solution to " << params.saveSolution;
+            break;
+        }
         case 'm':
         {
             switch (atoi(argv[i]))

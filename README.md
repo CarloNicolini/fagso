@@ -111,7 +111,6 @@ This will generate the `fagso_main` executable. Run it to see a short guide:
        -p [print solution]
        -P [shuffle percentage] shuffle percentage, in [0,1] interval, to make search more exhaustive
 
-
 FAGSO accepts as input, networks in binary adjacency matrix format.
 You can try to run FAGSO on an example graph with verbosity level set to 7 (maximum level)
 
