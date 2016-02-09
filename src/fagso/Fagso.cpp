@@ -561,10 +561,10 @@ void Fagso::run()
     this->finalAsymptoticModularity = getModularityAsympt(partition,nVertices,nEdges);
 
     FILE_LOG(logINFO) << "Final Surprise=" << finalSurprise;
-    FILE_LOG(logINFO) << "Final Significance=" << finalSignificance;
-    FILE_LOG(logINFO) << "Final AsymptoticSurprise=" << finalAsymptoticSurprise;
-    FILE_LOG(logINFO) << "Final Modularity=" << finalModularity;
-    FILE_LOG(logINFO) << "Final AsymptoticModularity=" << finalAsymptoticModularity;
+    //FILE_LOG(logINFO) << "Final Significance=" << finalSignificance;
+    //FILE_LOG(logINFO) << "Final AsymptoticSurprise=" << finalAsymptoticSurprise;
+    //FILE_LOG(logINFO) << "Final Modularity=" << finalModularity;
+    //FILE_LOG(logINFO) << "Final AsymptoticModularity=" << finalAsymptoticModularity;
     if (params.saveSolution)
     {
         FILE_LOG(logINFO) << "Solution saved to = " << savestring(params,quality);
