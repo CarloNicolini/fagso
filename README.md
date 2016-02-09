@@ -229,6 +229,7 @@ then the input matrix to FAGSO should appear like:
     [  0.0, 1.0, 0.0, 0.0]]
 
 **Example**:
+
     >> A=np.loadtxt('mymatrix.txt')
     >> B=(A>0).astype(int).astype(float)
     >> [memb, surp] = fagso(B)
