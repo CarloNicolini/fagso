@@ -63,9 +63,6 @@ CMake will show specific errors if some missing package is requested for the com
 
 On OSX I strongly suggest to obtain cython through `pip` by first installing `pip` using `homebrew`. 
 
-# Windows support:
-Despite everything should be ready to be ported happily in Windows, I don't have time to let the code compile smoothly on Windows. If you want to join me in porting FAGSO for Windows let me know.
-
 # Using FAGSO
 ## Using FAGSO as a standalone executable
 FAGSO can be used as a standalone executable. First compile FAGSO as described before, to recap:
@@ -157,6 +154,10 @@ Start a python console and run fagso
     >> [membership,surprise]=fagso(A)
 
 **fagso** returns as first argument a dictionary where keys are the vertices and values are the community indices of vertices. Second argument is the numeric value of Surprise.
+
+
+# Windows support:
+Despite everything should be ready to be ported happily in Windows, I don't have time to let the code compile smoothly on Windows. If you want to join me in porting FAGSO for Windows, fork this project on github.
 
 
 # FAQ AND TROUBLESHOOTING
