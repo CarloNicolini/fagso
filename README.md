@@ -201,23 +201,25 @@ This command makes the `libstdc++.so.6` point to the `g++-4.4` `libstdc++` libra
 
 For other informations take a look at http://dovgalecs.com/blog/matlab-glibcxx_3-4-11-not-found/ or https://github.com/RobotLocomotion/drake/issues/960 which are very similar problems.
 
-### Compiler making wrong assumptions on mex.h header:
+### Compiler making wrong assumptions on mex.h header (Matlab/Octave mex incompatibility):
 
 If you want to have both MATLAB and OCTAVE mex files, I suggest, in order to avoid problems with the wrong `mex.h` import to first build with Matlab support, then copy the resulting `fagso_mx` in some folder, then clean the repository and recompile with `-DOCTAVE_SUPPORT`. It may happen indeed that the compilers import the `mex.h` from the Octave devel libraries when compiling the MATLAB libraries or viceversa. Compiling them separately solves the issue.
 
-### In Python FAGSO I get `ValueError: Buffer dtype mismatch, expected 'double' but got 'long'`
+### With pyfagso I get Buffer dtype mismatch
 
 You must convert your matrix as a numpy 2D square array with float elements with values 1 and 0.
 
-ValueError: Buffer dtype mismatch, expected 'double' but got 'long'
+`ValueError: Buffer dtype mismatch, expected 'double' but got 'long'`
 You can do it with:
 
 If your matrix `mymatrix.txt` is like this:
 
-   17.30322    4.00067    0.00000    0.00000
+
+    17.30322    4.00067    0.00000    0.00000
     4.00067    0.00000    0.00000    0.14667
     0.00000    0.00000   12.67823    6.87591
     0.00000    0.14667    6.87591    0.00000
+
 
 then the input matrix to FAGSO should appear like:
 
