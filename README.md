@@ -1,6 +1,10 @@
 # FAGSO "Fast Agglomerative Surprise Optimization"
 
 This is the implementation of FAGSO, the algorithm described in "Modular structure of brain functional networks: breaking the resolution limit by Surprise" by Nicolini C. and Bifone A.
+
+If you use this software, please cite:
+Nicolini C. and Bifone A. "Modular structure of brain functional networks: breaking the resolution limit by Surprise", Sci.Rep (2016)
+
 FAGSO comes as a C++ library but wrappers for Matlab/Octave and Python are available. Instructions on how to build FAGSO as well as its Matlab, Octave and Python wrappers are described below.
 For further problems, don't hesitate to contact me.
 
@@ -46,7 +50,7 @@ To compile the `pyfagso` python module you need `cython >= 0.17`:
 
 On Debian-based Linux you can install cython via the repositories:
 
-    $> sudo apt-get install python-cython
+    $> sudo apt-get install python-cython python-numpy
 
 and then enable the python support of FAGSO:
 
@@ -56,12 +60,6 @@ and then enable the python support of FAGSO:
 CMake will show specific errors if some missing package is requested for the compilation. Just be sure always to be up-to-date with **numpy** and **cython** packages:
 
     $> sudo pip install -U numpy cython
-
-
-Once `pyfagso` is compiled start a python console and import pyfagso as a normal Python module
-
-    $> python
-    >>> import pyfagso
 
 On OSX I strongly suggest to obtain cython through `pip` by first installing `pip` using `homebrew`. 
 
@@ -139,11 +137,32 @@ For **Octave** the syntax is similar:
     >> K=load('../data/karate.adj');
     >> [memb, surp] = fagso_oct(K);
 
+## Using FAGSO as Python module
+
+Compiled FAGSO works directly with the adjacency matrix of the graph, provided as a numpy matrix. It **does not** need to install networkx.
+
+IMPORTANT: Please ensure the matrix is symmetric and binary. To do so in numpy, if you load a weighted adjacency matrix, you can convert it in binary form with the following command:
+
+    >> A=np.loadtxt('some_real_matrix.txt')
+    >> B=(A>0).astype(int).astype(float)
+
+**P.S.**
+It's important that the input matrix is a float matrix of 1s and 0s
+
+Start a python console and run fagso
+
+    >> import numpy as np
+    >> from pyfagso import fagso
+    >> A=np.loadtxt('some_real_binary_square_symmetric_matrix.txt')
+    >> [membership,surprise]=fagso(A)
+
+**fagso** returns as first argument a dictionary where keys are the vertices and values are the community indices of vertices. Second argument is the numeric value of Surprise.
+
 
 # FAQ AND TROUBLESHOOTING
 ---
 
-## Linking libstdc++.so.6 problem
+## Linking libstdc++.so.6 problem with MATLAB
 
 I can compile FAGSO for MATLAB but after calling `fagso_mx`, MATLAB prompts me with the following error message:
 
@@ -185,3 +204,29 @@ For other informations take a look at http://dovgalecs.com/blog/matlab-glibcxx_3
 ### Compiler making wrong assumptions on mex.h header:
 
 If you want to have both MATLAB and OCTAVE mex files, I suggest, in order to avoid problems with the wrong `mex.h` import to first build with Matlab support, then copy the resulting `fagso_mx` in some folder, then clean the repository and recompile with `-DOCTAVE_SUPPORT`. It may happen indeed that the compilers import the `mex.h` from the Octave devel libraries when compiling the MATLAB libraries or viceversa. Compiling them separately solves the issue.
+
+### In Python FAGSO I get `ValueError: Buffer dtype mismatch, expected 'double' but got 'long'`
+
+You must convert your matrix as a numpy 2D square array with float elements with values 1 and 0.
+
+ValueError: Buffer dtype mismatch, expected 'double' but got 'long'
+You can do it with:
+
+If your matrix `mymatrix.txt` is like this:
+
+   17.30322    4.00067    0.00000    0.00000
+    4.00067    0.00000    0.00000    0.14667
+    0.00000    0.00000   12.67823    6.87591
+    0.00000    0.14667    6.87591    0.00000
+
+then the input matrix to FAGSO should appear like:
+
+    [[ 1.0, 1.0, 0.0, 0.0],
+    [  1.0, 0.0, 0.0, 1.0],
+    [  0.0, 0.0, 1.0, 0.0],
+    [  0.0, 1.0, 0.0, 0.0]]
+
+**Example**:
+    >> A=np.loadtxt('mymatrix.txt')
+    >> B=(A>0).astype(int).astype(float)
+    >> [memb, surp] = fagso(B)
