@@ -22,7 +22,7 @@ FAGSO is tested on Ubuntu >= 14.04 with **gcc/clang** compiler and OSX Yosemite 
 ## Compilation
 To compile FAGSO open a terminal window, then issue this commands:
 
-    $> git clone https:/github.com/CarloNicolini/fagso.git
+    $> git clone --recursive https:/github.com/CarloNicolini/fagso.git
     $> cd fagso
     $> mkdir build
     $> cd build
